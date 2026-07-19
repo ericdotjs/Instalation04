@@ -6,6 +6,7 @@ namespace Ark.Utils
 {
     public static class ConstantsGlobals
     {
+        public const string FOLDER_NAME = "HCEEK";
         public const string HEEK_FOLDER = "HCEEK_PATH";
         public const string HEEK_TAG = "HCEEK_TAGS";
         public const string HEEK_DATA = "HCEEK_DATA";

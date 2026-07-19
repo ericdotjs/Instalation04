@@ -38,7 +38,14 @@ namespace Ark
             if (result.Equals(WinForms.DialogResult.OK))
             {
                 this.pathFolder = folderDialog.SelectedPath;
-                this.pathFolderLabel.Text = this.pathFolder;
+                if (Utils.Utils.isHeekValidatedDirectory(this.pathFolder))
+                {
+                    this.pathFolderLabel.Text = this.pathFolder;
+                }
+                else
+                {
+                    WinForms.MessageBox.Show($"This is not a {Utils.ConstantsGlobals.FOLDER_NAME} Folder!");
+                }
             }
         }
 
