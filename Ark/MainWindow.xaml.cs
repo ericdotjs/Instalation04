@@ -8,6 +8,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Ark.Services;
 
 namespace Ark
 {
@@ -16,9 +17,29 @@ namespace Ark
     /// </summary>
     public partial class MainWindow : Window
     {
+        ConfigurationBuilder builder;
+        ConfigReader configReader;
+
         public MainWindow()
         {
-            InitializeComponent();
+            builder = new ConfigurationBuilder();
+            configReader = new ConfigReader(builder);
+            if (builder.isExist)
+            {
+                InitializeComponent();
+            }
+            else
+            {
+                InitSettings paths = new InitSettings();
+                if (paths.pathFolder != null)
+                {
+                    configReader.WriteValuesPaths(paths.pathFolder);
+                    InitializeComponent();
+                }
+
+                else
+                    this.Close();
+            }
         }
     }
 }
